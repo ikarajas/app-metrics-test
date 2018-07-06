@@ -19,6 +19,7 @@ namespace AppMetricsTest
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseMetricsEndpoints()
                 .UseStartup<Startup>()
                 .Build();
     }
