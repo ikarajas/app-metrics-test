@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Metrics;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppMetricsTest.Controllers
@@ -9,10 +10,22 @@ namespace AppMetricsTest.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        protected readonly IMetrics _metrics;
+
+        public ValuesController(IMetrics metrics)
+        {
+            _metrics = metrics;
+        }
+
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<string>> Get()
         {
+            using (_metrics.Measure.Timer.Time(MetricsLibrary.FooProcessTimer))
+            {
+                await Helper.Foo();
+            }
+
             return new string[] { "value1", "value2" };
         }
 
