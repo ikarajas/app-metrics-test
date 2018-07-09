@@ -8,7 +8,7 @@ namespace AppMetricsTest
     {
         public static TimerOptions FooProcessTimer => new TimerOptions
         {
-            Context = "Application",
+            Context = "AppMetricsTest",
             DurationUnit = TimeUnit.Milliseconds,
             MeasurementUnit = Unit.Calls,
             Name = "Processing Foo",
