@@ -36,6 +36,7 @@ namespace AppMetricsTest
             }
 
             app.UseMvc();
+            app.UseMetricsAllMiddleware();
         }
     }
 }
